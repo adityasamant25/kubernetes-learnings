@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: httpd-ingress-with-host
+  namespace: httpd
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: localingress.com
+    http:
+      paths:
+        - backend:
+            service:
+              name: httpd-service
+              port:
+                number: 80
+          path: /
+          pathType: Prefix
+

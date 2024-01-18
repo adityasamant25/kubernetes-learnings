@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: gvisor02
+  name: gvisor02
+  namespace: sandboxes
+spec:
+  nodeName: kubeworker02
+  runtimeClassName: gvisor
+  containers:
+    - image: nginx
+      name: gvisor02
+      resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
